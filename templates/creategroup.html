@@ -5,7 +5,8 @@
 <link rel="stylesheet" href="/Users/Mart/Desktop/Resource/Craft/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.css">
 <link rel="stylesheet" href="/Users/Mart/Desktop/Resource/Craft/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="">      
+<link rel="stylesheet" href="./css/style.css">
+      
 <script src=""></script>
  </head>
  <body>
@@ -25,7 +26,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="./messageboard.html">Message Board</a></li>
                         <li><a href="./creategroup.html">Create Group</a></li>
-                        <li><a href="">Post Message</a></li>
+                        <li><a href="./post">Post Message</a></li>
+                        <li><a href="./login.html">Log Out</a></li>
+                        <!--
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-responsive img-rounded" href="" alt=""/><span class="caret"></span>
@@ -35,6 +38,7 @@
                                 <li><a href="./login.html">Sign Out</a></li>
                             </ul>
                         </li>
+                        -->
                     </ul>
 
                     <form class="navbar-form pull-right">
@@ -63,7 +67,11 @@
                     
                     <div class="form-group">
                         <label for="member">Add members</label>
-                        <select type="select" id="members"  class="form-control"></select>
+                        <select type="select" id="members"  class="form-control">
+                            <option>user1</option>
+                            <option>user2</option>
+                            <option>user3</option>
+                        </select>
                     </div>
                     <br>
                      <button class="btn btn-primary" type="button">Cancel</button>
