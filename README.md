@@ -6,11 +6,11 @@
  * A fullstack app that built with react, redux, express and postgresql, which enables users to create groups, post messages to group and receive messages from groups.
 
  ##Features
-*Login with email and password
+*Login with email and password.
 *Allow users to create groups.
-*Allow users to add other users to groups
-*Allow users to view messages from groups they belong
-*Allow users post messages to groups 
+*Allow users to add other users to groups.
+*Allow users to view messages from groups they belong.
+*Allow users post messages to groups .
 
  ##Dependencies
  * **[Express](https://expressjs.com/)** - It is used in serving the app.
