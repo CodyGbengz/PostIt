@@ -1,12 +1,12 @@
-$(document).ready(()=> {
- getGroups()
-})
+$(document).ready(() => {
+  getGroups();
+});
 
 const getGroups = () => {
-    let groupsUrl = '';
-    let groups = []
-    $.getJSON(groupsUrl,(response) => {
-        
+  const groupsUrl = '';
+  const groups = [];
+  $.getJSON(groupsUrl, (response) => {
 
-    })
-}
+
+  });
+};
