@@ -39,7 +39,8 @@ router.get('/api/group/:groupid/messages', (req, res, next) => {
 
 
 router.use((err, req, res, next) => {
-  console.log(`unhandled error detected:${  err.message}`);
+  /* eslint-disable no-console*/
+  console.log(`unhandled error detected:${err.message}`);
   res.send('500- server error');
 });
 
