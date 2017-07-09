@@ -22,7 +22,7 @@
 * Clone the repository using your favorite terminal with the command `git clone https://github.com/willywunderdog/postit.git`
 * Navigate into the directory and run `$ cd postit`
 * Install all dependencies by running `$ npm install`
-* Start the app by running `$ node app.js`
+* Start the app by running `$ npm start'`
 
 
 ##Tests
