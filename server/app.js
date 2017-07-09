@@ -1,8 +1,7 @@
-import { routes } from './routes/routes';
-
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
+import express from 'express';
+import bodyParser from 'body-parser';
+import path from 'path';
+import routes from './routes/routes';
 
 
 const port = process.env.PORT || 8080;
