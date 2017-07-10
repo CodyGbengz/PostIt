@@ -1,17 +1,34 @@
 
 export default (sequelize, DataTypes) => {
-  const Users = sequelize.define('Users', {
+  const User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      required: true,
+      unique: true,
+      validate: {
+        is: /^[a-z0-9_-]+$/,
+      }
     },
+
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isEmail: {
+          msg: 'Enter a valid email address'
+        },
+      }
     },
+
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: {
+          args: [6, 50]
+        }
+      }
     },
     phonenumber: {
       type: DataTypes.STRING,
@@ -20,9 +37,12 @@ export default (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: (models) => {
-        // associations can be defined here
+        User.hasMany(models.Message, {
+          foreignKey: 'userId',
+          onDelete: 'CASCADE'
+        });
       }
     }
   });
-  return Users;
+  return User;
 };
