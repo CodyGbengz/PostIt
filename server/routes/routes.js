@@ -1,48 +1,56 @@
 import express from 'express';
+import path from 'path';
+import jwt from 'jsonwebtoken';
+import controllers from '../controllers/index';
 
 const router = express.Router();
 
 
 router.get('/', (req, res) => {
-  res.render('/templates/index.html');
+  res.sendFile('C:/Users/Mart/Desktop/PostIt/templates/index.html');
 });
 
-router.post('/api/user/signup', (req, res) => {
-  const email = req.body.email,
-    password = req.body.password,
-    username = req.body.username,
-    phoneNumber = req.body.phoneNumber,
-    user = { email, password, username, phoneNumber };
-  console.log(user);
+// routes to create users and sign in user 
+router.post('/api/user/signup', controllers.Users.create);
+router.post('/api/user/signin', controllers.Users.auth);
 
-  res.send(user);
+// authentication middleware goes here
+router.use((req, res, next) => {
+  const token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  if (token) {
+    jwt.verify(token, 'secret', (err, decoded) => {
+      if (err) {
+        res.status(401).send({
+          message: 'auth failed'
+        });
+        return;
+      }
+      // save token for use in subsequent routes
+      req.decoded = decoded;
+      next();
+    });
+  }
 });
 
-router.post('/api/user/signin', (req, res) => {
-  res.send('signin route');
-});
+// route to create groups
+router.post('/api/group', );
 
-router.post('/api/group', (req, res) => {
-  res.send('create group route');
-});
+// route to add user to group
+router.post('/api/group/:groupid/user',);
 
-router.post('/api/group/:groupid/user', (req, res, next) => {
-  res.send('add user route');
-});
+// route to post message to particular group
+router.post('/api/group/:groupid/message',);
 
-router.post('/api/group/:groupid/message', (req, res, next) => {
-
-});
-
-router.get('/api/group/:groupid/messages', (req, res, next) => {
-
-});
+// route to view message from particular group
+router.get('/api/group/:groupid/messages', );
 
 
 router.use((err, req, res, next) => {
   /* eslint-disable no-console*/
   console.log(`unhandled error detected:${err.message}`);
   res.send('500- server error');
+  next();
 });
 
 router.use((req, res) => {
