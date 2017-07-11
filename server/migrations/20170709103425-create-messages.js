@@ -1,6 +1,5 @@
 
-
-export default {
+module.exports = {
   up(queryInterface, Sequelize) {
     return queryInterface.createTable('Messages', {
       id: {
@@ -9,11 +8,13 @@ export default {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      author: {
-        type: Sequelize.STRING
+      userId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE'
       },
-      group: {
-        type: Sequelize.STRING
+      groupId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE'
       },
       content: {
         type: Sequelize.STRING
@@ -31,7 +32,7 @@ export default {
       }
     });
   },
-  down(queryInterface, Sequelize) {
+  down(queryInterface) {
     return queryInterface.dropTable('Messages');
   }
 };

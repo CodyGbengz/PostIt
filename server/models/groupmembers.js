@@ -1,12 +1,12 @@
-export default (sequelize, DataTypes) => {
-  const groupMember = sequelize.define('members', {
-    name: DataTypes.STRING
+export default (sequelize) => {
+  const GroupMember = sequelize.define('GroupMember', {
   }, {
     classMethods: {
       associate: (models) => {
-
+        GroupMember.belongsTo(models.User);
+        GroupMember.belongsTo(models.Group);
       }
     }
   });
-  return groupMember;
+  return GroupMember;
 };

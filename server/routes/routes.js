@@ -1,6 +1,4 @@
 import express from 'express';
-import path from 'path';
-import jwt from 'jsonwebtoken';
 import controllers from '../controllers/index';
 
 const router = express.Router();
@@ -12,38 +10,34 @@ router.get('/', (req, res) => {
 
 // routes to create users and sign in user 
 router.post('/api/user/signup', controllers.User.create);
-router.post('/api/user/signin', controllers.User.auth);
+router.post('/api/user/signin', controllers.User.authenticate);
+router.get('/api/user', controllers.User.list);
 
 // authentication middleware goes here
-router.use((req, res, next) => {
-  const token = req.body.token || req.query.token || req.headers['x-access-token'];
 
-  if (token) {
-    jwt.verify(token, 'secret', (err, decoded) => {
-      if (err) {
-        res.status(401).send({
-          message: 'auth failed'
-        });
-        return;
-      }
-      // save token for use in subsequent routes
-      req.decoded = decoded;
-      next();
-    });
+router.use((req, res, next) => {
+  if (req.session.user) {
+    next();
+  } else {
+    res.send('Please signin');
   }
 });
 
 // route to create groups
-router.post('/api/group', );
+router.post('/api/group', controllers.Group.create);
 
 // route to add user to group
-router.post('/api/group/:groupid/user',);
+router.post('/api/group/:groupid/user', );
 
 // route to post message to particular group
-router.post('/api/group/:groupid/message',);
+router.post('/api/group/:groupid/message', );
 
 // route to view message from particular group
-router.get('/api/group/:groupid/messages', );
+router.get('/api/group/:groupid/messages',);
+
+router.get('/signout', (req, res) => {
+  req.session.destroy();
+});
 
 
 router.use((err, req, res, next) => {

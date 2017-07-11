@@ -1,12 +1,12 @@
 
 export default (sequelize, DataTypes) => {
   const Message = sequelize.define('Message', {
-    authorId: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
     groupId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     content: {

@@ -7,7 +7,7 @@ export default (sequelize, DataTypes) => {
       required: true,
       unique: true,
       validate: {
-        is: /^[a-z0-9_-]+$/,
+        is: /^[a-z0-9_-]+$/
       }
     },
 
@@ -40,6 +40,10 @@ export default (sequelize, DataTypes) => {
         User.hasMany(models.Message, {
           foreignKey: 'userId',
           onDelete: 'CASCADE'
+        });
+        User.belongsToMany(models.Group, {
+          through: 'UserGroup',
+          foreignKey: 'userId'
         });
       }
     }
