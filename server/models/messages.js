@@ -1,11 +1,11 @@
 
 export default (sequelize, DataTypes) => {
-  const Messages = sequelize.define('Messages', {
-    author: {
-      type: DataTypes.STRING,
+  const Message = sequelize.define('Message', {
+    authorId: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
-    group: {
+    groupId: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -20,9 +20,16 @@ export default (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate(models) {
-        // associations can be defined here
+        Message.belongsTo(models.Group, {
+          foreignKey: 'groupId',
+          onDelete: 'CASCADE'
+        });
+        Message.belongsTo(models.User, {
+          foreignKey: 'userId',
+          onDelete: 'CASCADE',
+        });
       }
     }
   });
-  return Messages;
+  return Message;
 };

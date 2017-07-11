@@ -11,8 +11,8 @@ router.get('/', (req, res) => {
 });
 
 // routes to create users and sign in user 
-router.post('/api/user/signup', controllers.Users.create);
-router.post('/api/user/signin', controllers.Users.auth);
+router.post('/api/user/signup', controllers.User.create);
+router.post('/api/user/signin', controllers.User.auth);
 
 // authentication middleware goes here
 router.use((req, res, next) => {

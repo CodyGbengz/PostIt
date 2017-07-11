@@ -1,6 +1,6 @@
 
 export default (sequelize, DataTypes) => {
-  const Groups = sequelize.define('Groups', {
+  const Group = sequelize.define('Group', {
     title: {
       type: DataTypes.STRING,
       allowNull: false
@@ -13,9 +13,14 @@ export default (sequelize, DataTypes) => {
   {
     classMethods: {
       associate: (models) => {
-        // associations can be defined here
+        Group.belongsTo(models.User, {
+          foreignKey: 'userId'
+        });
+        Group.hasMany(models.Message, {
+          foreignKey: 'groupId'
+        });
       }
     }
   });
-  return Groups;
+  return Group;
 };

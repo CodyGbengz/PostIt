@@ -8,7 +8,7 @@ const secret = process.env.JWT_SECRET_KEY;
 
 export default {
   create(req, res) {
-    return models.Users
+    return models.User
       .create({
         username: req.body.username,
         email: req.body.email,
@@ -19,15 +19,15 @@ export default {
       .catch(error => res.status(400).send(error));
   },
 
-  fetch(req, res) {
-    return models.Users
+  list(req, res) {
+    return models.User
       .findAll()
       .then(users => res.status(200).send(users))
       .catch(error => res.status(400).send(error));
   },
 
-  auth(req, res) {
-    models.Users
+  authethicate(req, res) {
+    models.User
       .findAll({ where: { username: req.body.username, password: req.body.password } })
       .then((user) => {
         if (user) {
