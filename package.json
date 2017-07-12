@@ -2,7 +2,7 @@
   "name": "postit",
   "version": "1.0.0",
   "description": "A webapp that allow message sharing within groups",
-  "main": "index.js",
+  "main": "App.js",
   "scripts": {
     "start": "babel-node server/app.js --presets es2015"
   },
@@ -58,5 +58,9 @@
     "rimraf": "^2.6.1",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.5.0"
+  },
+  "engines": {
+    "node": "6.9.2",
+    "npm": "3.10.9"
   }
 }
