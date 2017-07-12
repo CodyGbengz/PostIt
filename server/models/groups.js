@@ -14,13 +14,9 @@ export default (sequelize, DataTypes) => {
     classMethods: {
       associate: (models) => {
         Group.belongsToMany(models.User, {
-          through: 'GroupMember',
-          foreignKey: 'groupId',
-          onDelete: 'CASCADE'
-        });
-        Group.hasMany(models.Message, {
-          foreignKey: 'groupId',
-          onDelete: 'CASCADE'
+          as: 'GroupMembers',
+          through: 'GroupMembers',
+          foreignKey: 'groupId'
         });
       }
     }

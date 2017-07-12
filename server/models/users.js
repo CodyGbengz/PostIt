@@ -13,11 +13,10 @@ export default (sequelize, DataTypes) => {
 
     email: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
       validate: {
-        isEmail: {
-          msg: 'Enter a valid email address'
-        },
+        isEmail: true,
       }
     },
 
@@ -32,17 +31,15 @@ export default (sequelize, DataTypes) => {
     },
     phonenumber: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     }
   }, {
     classMethods: {
       associate: (models) => {
-        User.hasMany(models.Message, {
-          foreignKey: 'userId',
-          onDelete: 'CASCADE'
-        });
         User.belongsToMany(models.Group, {
-          through: 'UserGroup',
+          as: 'GroupMembers',
+          through: 'GroupMembers',
           foreignKey: 'userId'
         });
       }

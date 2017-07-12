@@ -24,7 +24,7 @@ export default (sequelize, DataTypes) => {
           foreignKey: 'groupId',
           onDelete: 'CASCADE'
         });
-        Message.belongsTo(models.User, {
+        Message.belongsToMany(models.User, {
           foreignKey: 'userId',
           onDelete: 'CASCADE',
         });

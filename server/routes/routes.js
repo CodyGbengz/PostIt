@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-  res.sendFile('C:/Users/Mart/Desktop/PostIt/templates/index.html');
+  res.send('welcome to my app');
 });
 
 // routes to create users and sign in user 
@@ -29,20 +29,24 @@ router.post('/api/group', controllers.Group.create);
 // route to add user to group
 router.post('/api/group/:groupid/user', );
 
+// route to get all groups
+router.get('/api/group', controllers.Group.list);
+
 // route to post message to particular group
-router.post('/api/group/:groupid/message', );
+router.post('/api/group/:groupid/message', controllers.Message.create);
 
 // route to view message from particular group
 router.get('/api/group/:groupid/messages',);
 
 router.get('/signout', (req, res) => {
   req.session.destroy();
+  res.send('user signed out successfully');
 });
 
 
 router.use((err, req, res, next) => {
   /* eslint-disable no-console*/
-  console.log(`unhandled error detected:${err.message}`);
+  console.log(`unhandled error detected: ${err.message}`);
   res.send('500- server error');
   next();
 });

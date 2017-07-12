@@ -1,12 +1,20 @@
-export default (sequelize) => {
-  const GroupMember = sequelize.define('GroupMember', {
+
+export default (sequelize, DataTypes) => {
+  const GroupMembers = sequelize.define('GroupMembers', {
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    groupId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     classMethods: {
-      associate: (models) => {
-        GroupMember.belongsTo(models.User);
-        GroupMember.belongsTo(models.Group);
+      associate(models) {
+        // associations can be defined here
       }
     }
   });
-  return GroupMember;
+  return GroupMembers;
 };
