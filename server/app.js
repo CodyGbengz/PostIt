@@ -15,5 +15,7 @@ app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
 
 app.use(routes);
 
-app.listen(port);
+app.listen(port, () => {
+     console.log('live');
+});
 
