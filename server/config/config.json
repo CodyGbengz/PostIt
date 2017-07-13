@@ -15,11 +15,7 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": "212213",
-    "database": "test-postit",
-    "host": "127.0.0.1",
-    "port": 5432,
+    "use_env_variable": "DATABASE_URL",
     "dialect": "postgres"
   }
 }
