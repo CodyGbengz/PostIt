@@ -4,7 +4,7 @@
   "description": "A webapp that allow message sharing within groups",
   "main": "server/app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node server/app.js --presets es2015"
+    "start": "babel-node server/app.js --presets es2015"
   },
   "repository": {
     "type": "git",
