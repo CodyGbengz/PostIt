@@ -24,7 +24,7 @@ export default {
       .catch(error => res.status(400).send(error));
   },
 
-  authenticate(req, res) {
+  signin(req, res) {
     return models.User
       .findOne({ where:
         { username: req.body.username, password: md5(req.body.password) } })

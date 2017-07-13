@@ -1,26 +1,26 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../app';
-import models from '../models';
+import app from '../server/app';
+import models from '../server/models';
 
 process.env.NODE_ENV = 'test';
 const should = chai.should();
 
 chai.use(chaiHttp);
 
-models.Users.destroy({
+models.User.destroy({
   where: {},
   cascade: true,
   truncate: true
 });
 
-models.Groups.destroy({
+models.Group.destroy({
   where: {},
   cascade: true,
   truncate: true
 });
 
-models.Messages.destroy({
+models.Message.destroy({
   where: {},
   cascade: true,
   truncate: true

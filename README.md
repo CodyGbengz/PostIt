@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/WillyWunderdog/PostIt.svg?branch=master)](https://travis-ci.org/WillyWunderdog/PostIt)
 [![Code Climate](https://codeclimate.com/github/willywunderdog/postit/badges/gpa.svg)](https://codeclimate.com/github/WillyWunderdog/PostIt)
-[![Issue Count](https://codeclimate.com/github/willywunderdog/postit/badges/issue_count.svg)](https://codeclimate.com/github/WillyWunderdog/PostIt/issuesS)
+[![Issue Count](https://codeclimate.com/github/willywunderdog/postit/badges/issue_count.svg)](https://codeclimate.com/github/WillyWunderdog/PostIt/issues)
 
 # PostIt
  * A fullstack app that built with react, redux, express and postgresql, which enables users to create groups, post messages to group and receive messages from groups.

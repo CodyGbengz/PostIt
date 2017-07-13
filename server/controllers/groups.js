@@ -29,7 +29,7 @@ export default {
             message: 'Group not found'
           });
         }
-        models.Group.create({
+        models.Message.create({
           content: req.body.content,
           priority: req.body.priority,
           userId: req.session.user.id,
@@ -37,37 +37,37 @@ export default {
         });
         return res.send('Post sent successfully');
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error.message));
   },
 
   getMessage(req, res) {
     return models.Group
       .findOne({ where:
-        { groupId: req.param.groupId },
+        { id: req.param.id },
       include: [{ model: models.Message, as: 'messages' }] })
       .then((group) => {
-        res.status(200).send(group.messages);
+        res.status(200).send(group);
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error.message));
   },
 
   addUser(req, res) {
     return models.Group
-      .findById(req.params.groupid)
+      .findById(req.params.id)
       .then((group) => {
         if (!group) {
           return res.status(404).send({
             message: 'Group does not exists'
           });
         }
-        models.GroupMembers
-          .create({
-            userId: req.session.user.id,
-            groupId: req.params.groupid
-          });
         return res.status(200).send(group);
       })
-      .then(() => res.send('User added to group successfully!'))
+      .then(models.GroupMembers
+        .create({
+          userId: req.session.user.id,
+          groupId: req.params.groupid
+        }))
+      .then(res.send('User added to group successfully!'))
       .catch(error => res.status(400).send(error));
   }
 };
