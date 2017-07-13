@@ -22,9 +22,10 @@ export default (sequelize, DataTypes) => {
 
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      notNull: true,
       validate: {
         len: {
+          is: /^[a-z0-9_-]+$/,
           args: [6, 50]
         }
       }
@@ -34,16 +35,19 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
       unique: true
     }
-  }, {
-    classMethods: {
-      associate: (models) => {
-        User.belongsToMany(models.Group, {
-          as: 'GroupMembers',
-          through: 'GroupMembers',
-          foreignKey: 'userId'
-        });
-      }
-    }
   });
+
+  User.associate = (models) => {
+    User.belongsToMany(models.Group, {
+      as: 'member',
+      through: 'GroupMembers',
+      foreignKey: 'userId'
+    });
+  };
+
+  User.associate = (models) => {
+    User.hasMany(models.Message, { foreignKey: 'userId', as: 'message' });
+  };
+
   return User;
 };

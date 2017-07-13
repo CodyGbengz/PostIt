@@ -27,11 +27,11 @@ export default {
   authenticate(req, res) {
     return models.User
       .findOne({ where:
-        { username: req.body.username, password: req.body.password } })
+        { username: req.body.username, password: md5(req.body.password) } })
       .then((user) => {
         if (!user) {
-          return res.status(404).send({
-            message: 'auth failed'
+          return res.status(401).send({
+            message: 'Invalid username or password'
           });
         }
         req.session.user = user;

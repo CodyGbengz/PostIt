@@ -9,17 +9,19 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     }
-  },
-  {
-    classMethods: {
-      associate: (models) => {
-        Group.belongsToMany(models.User, {
-          as: 'GroupMembers',
-          through: 'GroupMembers',
-          foreignKey: 'groupId'
-        });
-      }
-    }
   });
+
+  Group.associate = (models) => {
+    Group.belongsToMany(models.User, {
+      as: 'groups',
+      through: 'GroupMembers',
+      foreignKey: 'groupId'
+    });
+  };
+
+  Group.associate = (models) => {
+    Group.hasMany(models.Message, { foreignKey: 'groupId', as: 'message' });
+  };
+
   return Group;
 };

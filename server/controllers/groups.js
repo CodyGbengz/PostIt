@@ -10,26 +10,64 @@ export default {
       .then(group => res.status(201).send(group))
       .catch(error => res.status(400).send(error));
   },
+
   list(req, res) {
     return models.Group
-      .findAll()
+      .all({
+        include: [{ all: true }]
+      })
       .then(groups => res.status(200).send(groups))
       .catch(error => res.status(400).send(error));
   },
+
+  addMessage(req, res) {
+    return models.Group
+      .findById(req.params.id)
+      .then((group) => {
+        if (!group) {
+          return res.status(404).send({
+            message: 'Group not found'
+          });
+        }
+        models.Group.create({
+          content: req.body.content,
+          priority: req.body.priority,
+          userId: req.session.user.id,
+          groupId: group.id
+        });
+        return res.send('Post sent successfully');
+      })
+      .catch(error => res.status(400).send(error));
+  },
+
   getMessage(req, res) {
     return models.Group
       .findOne({ where:
-        { groupId: req.param.groupId } })
+        { groupId: req.param.groupId },
+      include: [{ model: models.Message, as: 'messages' }] })
       .then((group) => {
-        res.send(group.messages);
+        res.status(200).send(group.messages);
       })
       .catch(error => res.status(400).send(error));
-  }
-/*
+  },
+
   addUser(req, res) {
     return models.Group
-      .create({
-
-      });
-  }*/
+      .findById(req.params.groupid)
+      .then((group) => {
+        if (!group) {
+          return res.status(404).send({
+            message: 'Group does not exists'
+          });
+        }
+        models.GroupMembers
+          .create({
+            userId: req.session.user.id,
+            groupId: req.params.groupid
+          });
+        return res.status(200).send(group);
+      })
+      .then(() => res.send('User added to group successfully!'))
+      .catch(error => res.status(400).send(error));
+  }
 };

@@ -17,19 +17,19 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     }
-  }, {
-    classMethods: {
-      associate(models) {
-        Message.belongsTo(models.Group, {
-          foreignKey: 'groupId',
-          onDelete: 'CASCADE'
-        });
-        Message.belongsToMany(models.User, {
-          foreignKey: 'userId',
-          onDelete: 'CASCADE',
-        });
-      }
-    }
   });
+
+  Message.associate = (models) => {
+    Message.belongsTo(models.Group, {
+      foreignKey: 'groupId',
+      as: 'group'
+    });
+  };
+
+  Message.associate = (models) => {
+    Message.belongsTo(models.User, {
+      foreignKey: 'userId'
+    });
+  };
   return Message;
 };

@@ -27,16 +27,16 @@ router.use((req, res, next) => {
 router.post('/api/group', controllers.Group.create);
 
 // route to add user to group
-router.post('/api/group/:groupid/user', );
+router.post('/api/group/:groupid/user', controllers.Group.addUser);
 
 // route to get all groups
 router.get('/api/group', controllers.Group.list);
 
 // route to post message to particular group
-router.post('/api/group/:groupid/message', controllers.Message.create);
+router.post('/api/group/:groupid/message', controllers.Group.addMessage);
 
 // route to view message from particular group
-router.get('/api/group/:groupid/messages',);
+router.get('/api/group/:groupid/message', controllers.Group.getMessage);
 
 router.get('/signout', (req, res) => {
   req.session.destroy();
