@@ -1,5 +1,6 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/WillyWunderdog/PostIt.svg?branch=master)](https://travis-ci.org/WillyWunderdog/PostIt)
 [![Code Climate](https://codeclimate.com/github/willywunderdog/postit/badges/gpa.svg)](https://codeclimate.com/github/WillyWunderdog/PostIt)
 [![Issue Count](https://codeclimate.com/github/willywunderdog/postit/badges/issue_count.svg)](https://codeclimate.com/github/WillyWunderdog/PostIt/issuesS)
 

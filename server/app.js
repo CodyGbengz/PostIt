@@ -15,8 +15,5 @@ app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
 
 app.use(routes);
 
-app.listen(port, () => {
-  /* eslint-disable no-console*/
-  console.log(`now live on ${port}`);
-});
+app.listen(port);
 
